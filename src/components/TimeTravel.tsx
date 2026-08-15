@@ -9,12 +9,11 @@ import { LogIn, LogOut } from "lucide-react";
 // Convert Seconds:Frames (at 30fps) to exact Seconds.
 // e.g. 1:25 -> 1s + (25/30)s = 1.833s
 const GLITCH_EVENTS = [
-  { start: 1.833, end: 2.233 }, // 1:25 - 2:07
-  { start: 3.5, end: 4.0 }, // 3:15 - 4:00
-  { start: 5.2, end: 5.733 }, // 5:06 - 5:22
-  { start: 6.933, end: 7.433 }, // 6:28 - 7:13
-  { start: 6.833, end: 6.933 },
-  { start: 7.433, end: 8.5 },
+  { start: 1.833, end: 2.233 }, // Asli: 1:25 - 2:07
+  { start: 3.5, end: 4.0 }, // Asli: 3:15 - 4:00
+  { start: 5.2, end: 5.733 }, // Asli: 5:06 - 5:22
+  { start: 6.933, end: 7.433 }, // Asli: 6:28 - 7:13
+  { start: 8.5, end: 8.8 }, // Asli: 8:15 - 8:24
 ];
 
 export default function TimeTravel() {
@@ -34,6 +33,7 @@ export default function TimeTravel() {
   const startYearRef = useRef<number>(new Date().getFullYear());
   const destYearRef = useRef<number>(0);
   const speedRef = useRef<number>(1);
+  const baseSpeedRef = useRef<number>(1);
   const isGlitchingRef = useRef<boolean>(false);
   const lockedGlitchIndexRef = useRef<number>(-1);
 
@@ -62,8 +62,8 @@ export default function TimeTravel() {
       calculatedSpeed = Math.abs(dest - startY) / 20;
     }
     if (calculatedSpeed < 1) calculatedSpeed = 1;
-
     speedRef.current = calculatedSpeed;
+    baseSpeedRef.current = calculatedSpeed;
 
     if (!audioRef.current) {
       audioRef.current = new Audio("/musing-mp3.mp3");
@@ -167,7 +167,10 @@ export default function TimeTravel() {
       } else {
         if (lockedGlitchIndexRef.current !== -1) {
           lockedGlitchIndexRef.current = -1;
+          speedRef.current = baseSpeedRef.current; // Restore speed to prevent freezing
         }
+
+        currentSpeed = speedRef.current;
 
         if (Math.abs(distance) < currentSpeed * 2) {
           // Glide smoothly into place (easing) - ONLY applied if we are not predicting a glitch
