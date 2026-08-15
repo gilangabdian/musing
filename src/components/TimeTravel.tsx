@@ -19,7 +19,7 @@ const GLITCH_EVENTS = [
 
 export default function TimeTravel() {
   const { data: session, status } = useSession();
-  
+
   const ownerUsername = process.env.NEXT_PUBLIC_OWNER_GITHUB_USERNAME || "github";
   const ownerAvatar = `https://github.com/${ownerUsername}.png`;
 
@@ -294,13 +294,12 @@ export default function TimeTravel() {
       )}
 
       {/* Music Credit - Absolute position ensures zero layout shift */}
-      <a 
-        href="https://www.youtube.com/watch?v=D5MlJRboXd0" 
-        target="_blank" 
+      <a
+        href="https://www.youtube.com/watch?v=D5MlJRboXd0"
+        target="_blank"
         rel="noopener noreferrer"
-        className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 text-zinc-600 hover:text-zinc-400 transition-colors duration-300 text-[10px] sm:text-xs font-light tracking-wider z-20"
-      >
-        Music: KoRuSe - two different words
+        className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 text-zinc-600 hover:text-zinc-400 transition-colors duration-300 text-[10px] sm:text-xs font-light tracking-wider z-20">
+        Music by KoRuSe - Two Different Words
       </a>
 
       {/* GitHub Auth - Avatar Popover */}
@@ -312,26 +311,26 @@ export default function TimeTravel() {
                 {status !== "loading" && (
                   <AvatarImage src={session?.user?.image || ownerAvatar} alt="Avatar" className="object-cover" />
                 )}
-                <AvatarFallback className="bg-zinc-900 text-zinc-500 font-mono text-sm animate-pulse">
-                  ?
-                </AvatarFallback>
+                <AvatarFallback className="bg-zinc-900 text-zinc-500 font-mono text-sm animate-pulse">?</AvatarFallback>
               </Avatar>
             </button>
           </PopoverTrigger>
-          <PopoverContent side="bottom" align="end" sideOffset={8} className="w-auto p-1 bg-zinc-900/90 backdrop-blur-md border-zinc-800 rounded-xl shadow-2xl">
+          <PopoverContent
+            side="bottom"
+            align="end"
+            sideOffset={8}
+            className="w-auto p-1 bg-zinc-900/90 backdrop-blur-md border-zinc-800 rounded-xl shadow-2xl">
             {session ? (
-              <button 
+              <button
                 onClick={() => signOut()}
-                className="flex items-center gap-3 px-4 py-2.5 w-full text-sm text-zinc-400 hover:text-white hover:bg-zinc-800/80 rounded-lg transition-colors font-medium tracking-wide"
-              >
+                className="flex items-center gap-3 px-4 py-2.5 w-full text-sm text-zinc-400 hover:text-white hover:bg-zinc-800/80 rounded-lg transition-colors font-medium tracking-wide">
                 <LogOut className="w-4 h-4" />
                 <span>Sign out</span>
               </button>
             ) : (
-              <button 
+              <button
                 onClick={() => signIn("github")}
-                className="flex items-center gap-3 px-4 py-2.5 w-full text-sm text-zinc-400 hover:text-white hover:bg-zinc-800/80 rounded-lg transition-colors font-medium tracking-wide"
-              >
+                className="flex items-center gap-3 px-4 py-2.5 w-full text-sm text-zinc-400 hover:text-white hover:bg-zinc-800/80 rounded-lg transition-colors font-medium tracking-wide">
                 <LogIn className="w-4 h-4" />
                 <span>Sign in</span>
               </button>
