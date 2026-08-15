@@ -1,36 +1,9 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# What?
+Lately I've been feeling empty, hollow, full and my mind is somehow filled with unclear questions. So deep in my mind, I have a desire to return to my childhood. When I was little, I felt like I had never experienced these feelings—this fear, this worry, this uncertainty.
 
-## Getting Started
+# Why?
+Therefore, I thought I wanted to channel my confused feelings in the form of work and I also adjusted it to my taste. I am so lucky because I was given quite a lot of knowledge about programming by God because the ideas that emerge will have a very big chance of being realized.
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# How?
+I really like music, I am quite a picky person when it comes to music, most of the music I like is probably something that people close to me never like or rarely listen to. I used my taste in music to create this web app. I named it `Musing`, musing means daydreaming. I gave it that name because at that time I often daydreamed and my thoughts just wanted to go back to when I was little. This app is simple, I just need to fill in the year I want to travel to, I filled in the year when I was little and yes after that there will be an animation of the year changing accompanied by music that I like. The music I used is by [KoRuSe - Two Different Word](https://www.youtube.com/watch?v=D5MlJRboXd0).
+To KoRuSe: I hope you don't mind me using your music.
