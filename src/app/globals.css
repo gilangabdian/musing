@@ -1,26 +1,45 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #000;
+  color: #fff;
+}
+
+/* Remove spin buttons from number input */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Cleaner Glitch Effect using Drop Shadow & Transform */
+.glitch-active {
+  animation: simple-glitch 0.2s linear infinite;
+}
+
+@keyframes simple-glitch {
+  0% { transform: translate(0) skew(0deg); filter: drop-shadow(-4px 0 0 cyan) drop-shadow(4px 0 0 magenta); }
+  20% { transform: translate(-4px, 2px) skew(-10deg); filter: drop-shadow(4px 0 0 cyan) drop-shadow(-4px 0 0 magenta); }
+  40% { transform: translate(4px, -2px) skew(10deg); filter: drop-shadow(-4px 0 0 cyan) drop-shadow(4px 0 0 magenta); }
+  60% { transform: translate(-2px, 4px) skew(-5deg); filter: drop-shadow(4px 0 0 cyan) drop-shadow(-4px 0 0 magenta); }
+  80% { transform: translate(2px, -4px) skew(5deg); filter: drop-shadow(-4px 0 0 cyan) drop-shadow(4px 0 0 magenta); }
+  100% { transform: translate(0) skew(0deg); filter: drop-shadow(4px 0 0 cyan) drop-shadow(-4px 0 0 magenta); }
+}
+
+/* Background Glitch */
+.bg-glitch-active {
+  animation: bg-flash 0.15s infinite alternate;
+}
+
+@keyframes bg-flash {
+  from { background-color: #000; }
+  to { background-color: #1a0505; }
 }
