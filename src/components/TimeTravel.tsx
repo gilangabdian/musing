@@ -2,6 +2,9 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { LogIn, LogOut } from "lucide-react";
 
 // Convert Seconds:Frames (at 30fps) to exact Seconds.
 // e.g. 1:25 -> 1s + (25/30)s = 1.833s
@@ -10,11 +13,16 @@ const GLITCH_EVENTS = [
   { start: 3.5, end: 4.0 }, // 3:15 - 4:00
   { start: 5.2, end: 5.733 }, // 5:06 - 5:22
   { start: 6.933, end: 7.433 }, // 6:28 - 7:13
-  { start: 8.5, end: 8.8 }, // 8:15 - 8:24
+  { start: 6.833, end: 6.933 },
+  { start: 7.433, end: 8.5 },
 ];
 
 export default function TimeTravel() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+  
+  const ownerUsername = process.env.NEXT_PUBLIC_OWNER_GITHUB_USERNAME || "github";
+  const ownerAvatar = `https://github.com/${ownerUsername}.png`;
+
   const [targetYearInput, setTargetYearInput] = useState("");
   const [isStarted, setIsStarted] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
@@ -295,29 +303,41 @@ export default function TimeTravel() {
         Music: KoRuSe - two different words
       </a>
 
-      {/* GitHub Auth - Absolute position ensures zero layout shift */}
-      <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 flex items-center gap-3">
-        {session ? (
-          <div className="flex items-center gap-3 group">
-            <div className="flex flex-col items-end hidden sm:flex">
-              <span className="text-zinc-500 text-[10px] tracking-widest uppercase">Welcome,</span>
-              <span className="text-white text-xs tracking-wider">{session.user?.name || "Traveler"}</span>
-            </div>
-            <button 
-              onClick={() => signOut()} 
-              title="Sign Out"
-              className="relative rounded-full overflow-hidden w-8 h-8 border border-zinc-800 hover:border-zinc-500 transition-colors duration-300">
-              <img src={session.user?.image || ""} alt="Avatar" className="w-full h-full object-cover" />
+      {/* GitHub Auth - Avatar Popover */}
+      <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20">
+        <Popover>
+          <PopoverTrigger asChild>
+            <button className="relative rounded-full overflow-hidden w-10 h-10 border-2 border-transparent hover:border-zinc-600 transition-all duration-300 outline-none focus:ring-2 focus:ring-zinc-600 focus:ring-offset-2 focus:ring-offset-black">
+              <Avatar className="w-full h-full bg-zinc-900">
+                {status !== "loading" && (
+                  <AvatarImage src={session?.user?.image || ownerAvatar} alt="Avatar" className="object-cover" />
+                )}
+                <AvatarFallback className="bg-zinc-900 text-zinc-500 font-mono text-sm animate-pulse">
+                  ?
+                </AvatarFallback>
+              </Avatar>
             </button>
-          </div>
-        ) : (
-          <button 
-            onClick={() => signIn("github")}
-            className="text-zinc-600 hover:text-white transition-colors duration-300 text-xs font-light tracking-widest uppercase flex items-center gap-2"
-          >
-            Connect GitHub
-          </button>
-        )}
+          </PopoverTrigger>
+          <PopoverContent side="bottom" align="end" sideOffset={8} className="w-auto p-1 bg-zinc-900/90 backdrop-blur-md border-zinc-800 rounded-xl shadow-2xl">
+            {session ? (
+              <button 
+                onClick={() => signOut()}
+                className="flex items-center gap-3 px-4 py-2.5 w-full text-sm text-zinc-400 hover:text-white hover:bg-zinc-800/80 rounded-lg transition-colors font-medium tracking-wide"
+              >
+                <LogOut className="w-4 h-4" />
+                <span>Sign out</span>
+              </button>
+            ) : (
+              <button 
+                onClick={() => signIn("github")}
+                className="flex items-center gap-3 px-4 py-2.5 w-full text-sm text-zinc-400 hover:text-white hover:bg-zinc-800/80 rounded-lg transition-colors font-medium tracking-wide"
+              >
+                <LogIn className="w-4 h-4" />
+                <span>Sign in</span>
+              </button>
+            )}
+          </PopoverContent>
+        </Popover>
       </div>
     </div>
   );

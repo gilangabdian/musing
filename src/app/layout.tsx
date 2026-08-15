@@ -5,10 +5,15 @@ import { Providers } from "@/components/Providers";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  icons: [],
+  icons: [
+    {
+      url: "/icon.png",
+      type: "image/png",
+    },
+  ],
   title: "Musing",
   description: "Travel to any year you want",
 };
