@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 // Convert Seconds:Frames (at 30fps) to exact Seconds.
 // e.g. 1:25 -> 1s + (25/30)s = 1.833s
@@ -13,6 +14,7 @@ const GLITCH_EVENTS = [
 ];
 
 export default function TimeTravel() {
+  const { data: session } = useSession();
   const [targetYearInput, setTargetYearInput] = useState("");
   const [isStarted, setIsStarted] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
@@ -292,6 +294,31 @@ export default function TimeTravel() {
       >
         Music: KoRuSe - two different words
       </a>
+
+      {/* GitHub Auth - Absolute position ensures zero layout shift */}
+      <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 flex items-center gap-3">
+        {session ? (
+          <div className="flex items-center gap-3 group">
+            <div className="flex flex-col items-end hidden sm:flex">
+              <span className="text-zinc-500 text-[10px] tracking-widest uppercase">Welcome,</span>
+              <span className="text-white text-xs tracking-wider">{session.user?.name || "Traveler"}</span>
+            </div>
+            <button 
+              onClick={() => signOut()} 
+              title="Sign Out"
+              className="relative rounded-full overflow-hidden w-8 h-8 border border-zinc-800 hover:border-zinc-500 transition-colors duration-300">
+              <img src={session.user?.image || ""} alt="Avatar" className="w-full h-full object-cover" />
+            </button>
+          </div>
+        ) : (
+          <button 
+            onClick={() => signIn("github")}
+            className="text-zinc-600 hover:text-white transition-colors duration-300 text-xs font-light tracking-widest uppercase flex items-center gap-2"
+          >
+            Connect GitHub
+          </button>
+        )}
+      </div>
     </div>
   );
 }
