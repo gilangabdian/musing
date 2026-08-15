@@ -5,7 +5,6 @@ Lately I've been feeling empty, hollow, full and my mind is somehow filled with 
 Therefore, I thought I wanted to channel my confused feelings in the form of work and I also adjusted it to my taste. I am so lucky because I was given quite a lot of knowledge about programming by God because the ideas that emerge will have a very big chance of being realized.
 
 # How?
-I really like music, I am quite a picky person when it comes to music, most of the music I like is probably something that people close to me never like or rarely listen to. I used my taste in music to create this web app.I named it `Musing`—which means deep reflection—because at the time, I was often lost in thought, and my mind kept constantly drifting back to my childhood.
+I really like music, I am quite a picky person when it comes to music, most of the music I like is probably something that people close to me never like or rarely listen to. I used my taste in music to create this web app. I named it `Musing`—which means deep reflection—because at the time, I was often lost in thought, and my mind kept constantly drifting back to my childhood.
 
-This app is simple, I just need to fill in the year I want to travel to, I filled in the year when I was little and yes after that there will be an animation of the year changing accompanied by music that I like. The music I used is by [KoRuSe - Two Different Word](https://www.youtube.com/watch?v=D5MlJRboXd0).
-To KoRuSe: I hope you don't mind me using your music.
+This app is simple, I just need to fill in the year I want to travel to, I entered the year from my childhood, and yes, an animation of the year changing appeared, accompanied by my favorite song—a track that, in my opinion, perfectly matched how I was feeling. The music I used is by [KoRuSe - Two Different Word](https://www.youtube.com/watch?v=D5MlJRboXd0). To KoRuSe: I hope you don't mind me using your music.
