@@ -282,6 +282,16 @@ export default function TimeTravel() {
           </button>
         </div>
       )}
+
+      {/* Music Credit - Absolute position ensures zero layout shift */}
+      <a 
+        href="https://www.youtube.com/watch?v=D5MlJRboXd0" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 text-zinc-600 hover:text-zinc-400 transition-colors duration-300 text-[10px] sm:text-xs font-light tracking-wider z-20"
+      >
+        Music: KoRuSe - two different words
+      </a>
     </div>
   );
 }
